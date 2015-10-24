@@ -31,4 +31,5 @@ module RandomData
       numbers = [0, rand(1..3)].join
 
    end
- end
+end
+ 
