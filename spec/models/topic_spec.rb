@@ -7,7 +7,8 @@ RSpec.describe Topic, type: :model do
   let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
 
   it { should have_many(:posts) }
-# #1
+  it { should have_many(:sponsored_posts) }
+
   context "attributes" do
     it "should respond to name" do
       expect(topic).to respond_to(:name)
@@ -21,7 +22,6 @@ RSpec.describe Topic, type: :model do
       expect(topic).to respond_to(:public)
     end
 
-# #2
     it "should be public by default" do
       expect(topic.public).to be(true)
     end
