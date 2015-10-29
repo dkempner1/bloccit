@@ -13,10 +13,8 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new
-    @topic.name = params[:topic][:name]
-    @topic.description = params[:topic][:description]
-    @topic.public = params[:topic][:public]
+    @topic = Topic.new(topic_params)
+
 
     if @topic.save
       redirect_to @topic, notice: "Topic was saved successfully."
@@ -32,23 +30,20 @@ class TopicsController < ApplicationController
   end
 
 
-    def update
-      @topic = Topic.find(params[:id])
+  def update
+    @topic = Topic.find(params[:id])
+    @topic.assign_attributs(topic_params)
 
-      @topic.name = params[:topic][:name]
-      @topic.description = params[:topic][:description]
-      @topic.public = params[:topic][:public]
-
-      if @topic.save
-         flash[:notice] = "Topic was updated."
-        redirect_to @topic
-      else
-        flash[:error] = "Error saving topic. Please try again."
-        render :edit
-      end
+    if @topic.save
+       flash[:notice] = "Topic was updated."
+      redirect_to @topic
+    else
+      flash[:error] = "Error saving topic. Please try again."
+      render :edit
     end
+  end
 
-    def destroy
+  def destroy
     @topic = Topic.find(params[:id])
 
     if @topic.destroy
@@ -60,4 +55,9 @@ class TopicsController < ApplicationController
     end
   end
 
+  private
+
+  def topic_params
+    params.require(:topic).permit(:name, :description, :public)
+  end
 end
