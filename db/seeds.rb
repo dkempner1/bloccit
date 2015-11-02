@@ -73,6 +73,13 @@ member = User.create!(
  password: 'helloworld'
 )
 
+admin = User.create!(
+   name:     'Moderator User',
+   email:    'moderator@hotmail.com',
+   password: 'helloworld',
+   role:     'moderator'
+ )
+
 
 
 puts "Seed finished"
