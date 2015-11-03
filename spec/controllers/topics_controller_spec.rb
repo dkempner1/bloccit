@@ -272,6 +272,7 @@ RSpec.describe TopicsController, type: :controller do
       end
     end
   end
+<<<<<<< HEAD
 
   context "moderator" do
     before do
@@ -366,4 +367,6 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 
+=======
+>>>>>>> master
 end

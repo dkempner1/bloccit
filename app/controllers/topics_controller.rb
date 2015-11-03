@@ -1,7 +1,9 @@
 class TopicsController < ApplicationController
 
-  before_action :require_sign_in, expect: [:index, :show]
-  before_action :authorize_user, except: [:index, :show]
+  before_action :require_sign_in, except: [:index, :show]
+   # #8
+     before_action :authorize_user, except: [:index, :show]
+
   def index
     @topics = Topic.all
   end
@@ -18,7 +20,6 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
 
-
     if @topic.save
       redirect_to @topic, notice: "Topic was saved successfully."
     else
@@ -33,20 +34,21 @@ class TopicsController < ApplicationController
   end
 
 
-  def update
-    @topic = Topic.find(params[:id])
-    @topic.assign_attributes(topic_params)
+    def update
+      @topic = Topic.find(params[:id])
 
-    if @topic.save
-       flash[:notice] = "Topic was updated."
-      redirect_to @topic
-    else
-      flash[:error] = "Error saving topic. Please try again."
-      render :edit
+      @topic.assign_attributes(topic_params)
+
+      if @topic.save
+         flash[:notice] = "Topic was updated."
+        redirect_to @topic
+      else
+        flash[:error] = "Error saving topic. Please try again."
+        render :edit
+      end
     end
-  end
 
-  def destroy
+    def destroy
     @topic = Topic.find(params[:id])
 
     if @topic.destroy
@@ -65,10 +67,10 @@ class TopicsController < ApplicationController
   end
 
   def authorize_user
-    unless current_user.moderator? || current_user.admin?
-      flash[:error] = "You must be an admin or moderator to do that."
-      redirect_to topics_path
-    end
+    unless current_user.moderator?  || current_user.admin?
+    flash[:error] = "You must be an admin or moderator to do that."
+    redirect_to topics_path
   end
+end
 
 end
