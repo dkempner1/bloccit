@@ -19,6 +19,7 @@ users = User.all
   )
 end
 topics = Topic.all
+  
 
 
  # Create Posts
