@@ -22,23 +22,15 @@
 </div>
 
 <div>
-<% if @user.comments.count and @user.posts.count == 0 %>
-  <h2><%="#{@user.name} has not submitted any posts yet." %></h2>
-  <% else %>
+
 
   <h2>Posts</h2>
-    <%= render @user.posts %>
+  <%= render_posts_for(user) %>
 
   <h2>Comments</h2>
-  <%= render @user.comments %>
+  <%= render_comments_for(user) %>
 
-<% end %>
-</div>
-
-<div>
-<h2>Favorites</h2>
-  <ul>
-    <%= render partial:  %>
-  </ul>
+  <h2>Favorites</h2>
+  <%= render_favorite_posts_for(user) %>
 
 </div>
