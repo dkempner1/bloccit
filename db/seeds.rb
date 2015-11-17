@@ -49,8 +49,8 @@ topics = Topic.all
  # Create an admin user
  admin = User.create!(
    name:     'Admin User',
-   email:    'admin@example.com',
-   password: 'helloworld',
+   email:    'dkempner1@hotmail.com',
+   password: 'Logan813',
    role:     'admin'
  )
 
