@@ -31,7 +31,7 @@ RSpec.describe Topic, type: :model do
       expect(topic.public).to be(true)
     end
   end
-
+  
   describe "scopes" do
     before do
       @public_topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
